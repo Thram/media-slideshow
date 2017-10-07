@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb"],
+  "rules": {
+    "import/no-extraneous-dependencies": 1,
+    "react/jsx-filename-extension": 0,
+    "no-console": 1,
+    "no-underscore-dangle": 0,
+    "react/prop-types": 0
+  },
+  "globals": {
+    "fetch": true,
+    "electron": true,
+    "chrome": true,
+    "WORKSPACE_APP_ID": true,
+    "WORKSPACE_APP_NAME": true,
+    "WORKSPACE_APP_TYPE": true,
+    "SCRAPPERS": true,
+    "MESSENGER": true
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true
+  }
+}

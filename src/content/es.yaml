@@ -1,0 +1,11 @@
+app:
+  title: Aplicación Demo
+todo_list:
+  title: Lista de ToDos
+  filter: Filtros
+mocks:
+  fetching: Cargando... %{entity}
+assets:
+  title: Bienes
+  images: Imágenes
+  icons: Material icons

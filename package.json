@@ -1,0 +1,167 @@
+{
+  "name": "media-slideshow",
+  "version": "0.0.7",
+  "description": "Electron app to manage multiple webapps",
+  "main": "index.js",
+  "repository": "https://github.com/Thram/media-slideshow",
+  "author": "Thram <thramposo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "dist": "NODE_ENV=production yarn build -- -p && build -m -p always",
+    "prebuild": "rimraf release",
+    "predist": "rimraf dist",
+    "build": "NODE_PATH=. webpack",
+    "build:gzip": "yarn build -- -p --env.compress",
+    "precz": "yarn test",
+    "cz": "git add . && git cz",
+    "lint": "eslint src --ext .jsx,.js",
+    "lint:test": "eslint __test__ --ext .js",
+    "test": "yarn lint && jest",
+    "snap": "yarn lint && jest -u",
+    "electron": "electron .",
+    "chrome-extension": "repackage-chrome-extension \"~/Library/Application Support/Google/Chrome/Default/Extensions/\"",
+    "dev-server": "webpack-dev-server --host 0.0.0.0 --port 8080",
+    "start:prod": "NODE_ENV=production npm-run-all \"build -- -p \" electron",
+    "start": "NODE_ENV=development npm-run-all --parallel build electron"
+  },
+  "build": {
+    "appId": "thram.mediaSlideshow",
+    "productName": "Media Slideshow",
+    "asar": false,
+    "files": [
+      ".babelrc",
+      "main.js",
+      "index.js",
+      "menu.js",
+      "updater.js",
+      "release",
+      "remote",
+      "extensions"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 510,
+          "y": 150
+        },
+        {
+          "x": 640,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Thram",
+        "repo": "media-slideshow"
+      }
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^.+\\.(css|scss|sass|less)$": "identity-obj-proxy"
+    }
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.12",
+    "@storybook/addon-info": "^3.2.12",
+    "@storybook/addon-knobs": "^3.2.12",
+    "@storybook/addon-options": "^3.2.12",
+    "@storybook/addon-storyshots": "^3.2.12",
+    "@storybook/react": "^3.2.12",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-emotion": "8.0.4",
+    "babel-plugin-react-element-info": "^1.0.1",
+    "babel-plugin-transform-remove-console": "6.8.5",
+    "commitizen": "^2.9.6",
+    "compression-webpack-plugin": "^1.0.1",
+    "cpy-cli": "^1.0.1",
+    "css-loader": "^0.28.7",
+    "cz-conventional-changelog": "^2.0.0",
+    "electron": "^1.7.8",
+    "electron-builder": "^19.34.2",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-template": "^6.0.1",
+    "husky": "^0.14.3",
+    "identity-obj-proxy": "^3.0.0",
+    "inquirer": "3.3.0",
+    "jest": "^21.2.1",
+    "json-loader": "^0.5.7",
+    "npm-run-all": "^4.1.1",
+    "preload-webpack-plugin": "^2.0.0",
+    "progress-bar-webpack-plugin": "^1.10.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.0.0",
+    "regenerator-runtime": "^0.11.0",
+    "rimraf": "^2.6.2",
+    "storybook-addon-jsx": "^4.2.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dev-server": "^2.9.1",
+    "yaml-loader": "^0.5.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "downscale": "1.0.0",
+    "electron-log": "^2.2.9",
+    "electron-updater": "^2.10.1",
+    "emotion": "8.0.4",
+    "glob": "^7.1.2",
+    "lodash": "^4.17.4",
+    "process-reducer": "1.0.3",
+    "prop-types": "^15.6.0",
+    "rc-hammerjs": "0.6.9",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-emotion": "8.0.4",
+    "react-html5video": "2.4.0",
+    "react-lazyload": "2.2.7",
+    "react-motion": "^0.5.2",
+    "react-redux": "^5.0.6",
+    "react-responsive-audio-player": "1.1.4",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^4.10.1",
+    "redux-thunk": "^2.2.0",
+    "uuid": "^3.1.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

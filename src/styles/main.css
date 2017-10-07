@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "NovaSquare";
+  src: url("./fonts/NovaSquare.ttf") format("truetype");
+}
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: NovaSquare, cursive;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+::selection {
+  background: transparent;
+}
+.audio_player .audio_info_marquee {
+  width: auto;
+  flex: 1;
+}
+.audio_player .audio_time_progress {
+  white-space: nowrap;
+}
